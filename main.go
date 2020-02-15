@@ -9,10 +9,9 @@ import (
 	"strconv"
 )
 
-
 type Book struct {
-	ID      string `json:"id"`
-	Title   string `json:"title"`
+	ID     string  `json:"id"`
+	Title  string  `json:"title"`
 	Author *Author `json:"author"`
 }
 
@@ -22,46 +21,43 @@ type Author struct {
 }
 
 type Part1 struct {
-	StaticID      string `json:"staticid"`
-	Root    	  string `json:"root"`
-	Model   	  string `json:"model"`
-	System  	  string `json:"system"`
-	IMEI    	  string `json:"imei"`
+	StaticID string `json:"staticid"`
+	Root     string `json:"root"`
+	Model    string `json:"model"`
+	System   string `json:"system"`
+	IMEI     string `json:"imei"`
 }
 
 type Part2 struct {
-	ApkId    	  string `json:"apkId"`
-	ApkName  	  string `json:"apk_name"`
+	ApkId         string `json:"apkId"`
+	ApkName       string `json:"apk_name"`
 	ApkFullName   string `json:"apkFullName"`
 	ApkVersion    string `json:"apk_version"`
-	ApkPath 	  string `json:"apk_path"`
+	ApkPath       string `json:"apk_path"`
 	ApkPermission string `json:"apk_permission"`
 }
 
 type Output struct {
-	ApkId    	  string `json:"apkId"`
-	ApkName  	  string `json:"apk_name"`
+	ApkId         string `json:"apkId"`
+	ApkName       string `json:"apk_name"`
 	ApkFullName   string `json:"apkFullName"`
 	ApkVersion    string `json:"apk_version"`
 	ApkProtection string `json:"apk_protection"`
-	ApkTitle	  string `json:"apk_title"`
+	ApkTitle      string `json:"apk_title"`
 }
-
-
 
 var books []Book
 var parts1 []Part1
 var parts2 []Part2
+
 //var parts3 []Part3
 var outputs []Output
-
-
 
 func main() {
 	r := mux.NewRouter()
 	//books = append(books, Book{ID: "1", Title: "Война и Мир", Author: &Author{Firstname: "Лев", Lastname: "Толстой"}})
 	//books = append(books, Book{ID: "2", Title: "Преступление и наказание", Author: &Author{Firstname: "Фёдор", Lastname: "Достоевский"}})
-	parts1 = append(parts1, Part1{StaticID: "1", Root: "1", Model: "Xiaomi Mi A2 Lite", System: "Android 9", IMEI: "12435364575656234" })
+	parts1 = append(parts1, Part1{StaticID: "1", Root: "1", Model: "Xiaomi Mi A2 Lite", System: "Android 9", IMEI: "12435364575656234"})
 	r.HandleFunc("/books/{id}", updateBook).Methods("PUT")
 	r.HandleFunc("/books/{id}", deleteBook).Methods("DELETE")
 	r.HandleFunc("/parts1", getParts1).Methods("GET")
@@ -74,12 +70,10 @@ func main() {
 	r.HandleFunc("/outputs/{id}", getOutput).Methods("GET")
 	r.HandleFunc("/outputs", createOutput).Methods("POST")
 
-
-	log.Fatal(http.ListenAndServe(":8000", r))
+	log.Fatal(http.ListenAndServe(":3000", r))
 }
 
 /////////////PART1/////////////
-
 
 func getParts1(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -106,10 +100,6 @@ func createPart1(w http.ResponseWriter, r *http.Request) {
 	parts1 = append(parts1, part1)
 	json.NewEncoder(w).Encode(part1)
 }
-
-
-
-
 
 /////////////PART2/////////////
 
@@ -139,9 +129,6 @@ func createPart2(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(part2)
 }
 
-
-
-
 /////////////OUTPUT/////////////
 
 func getOutputs(w http.ResponseWriter, r *http.Request) {
@@ -169,13 +156,6 @@ func createOutput(w http.ResponseWriter, r *http.Request) {
 	outputs = append(outputs, output)
 	json.NewEncoder(w).Encode(output)
 }
-
-
-
-
-
-
-
 
 func updateBook(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -205,5 +185,3 @@ func deleteBook(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(books)
 }
-
-
