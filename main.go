@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"github.com/gorilla/mux"
-	"log"
 	"math/rand"
 	"net/http"
 	"os"
@@ -71,7 +70,12 @@ func main() {
 	r.HandleFunc("/outputs/{id}", getOutput).Methods("GET")
 	r.HandleFunc("/outputs", createOutput).Methods("POST")
 
-	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), r))
+	//log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), r))
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "9000" // Default port if not specified
+	}
+	//r := grace.Serve(":" + port, context.ClearHandler(http.DefaultServeMux))
 }
 
 /////////////PART1/////////////
