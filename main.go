@@ -5,7 +5,6 @@ import (
 	"github.com/gorilla/mux"
 	"math/rand"
 	"net/http"
-	"os"
 	"strconv"
 )
 
@@ -71,10 +70,7 @@ func main() {
 	r.HandleFunc("/outputs", createOutput).Methods("POST")
 
 	//log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), r))
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "9000" // Default port if not specified
-	}
+
 	//r := grace.Serve(":" + port, context.ClearHandler(http.DefaultServeMux))
 }
 
