@@ -6,6 +6,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"os"
 	"strconv"
 )
 
@@ -70,7 +71,7 @@ func main() {
 	r.HandleFunc("/outputs/{id}", getOutput).Methods("GET")
 	r.HandleFunc("/outputs", createOutput).Methods("POST")
 
-	log.Fatal(http.ListenAndServe(":5000", nil))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), r))
 }
 
 /////////////PART1/////////////
