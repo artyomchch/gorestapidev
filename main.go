@@ -70,7 +70,7 @@ func main() {
 	r.HandleFunc("/outputs/{id}", getOutput).Methods("GET")
 	r.HandleFunc("/outputs", createOutput).Methods("POST")
 
-	log.Fatal(http.ListenAndServe(":3000", r))
+	log.Fatal(http.ListenAndServe(":5000", r))
 }
 
 /////////////PART1/////////////
