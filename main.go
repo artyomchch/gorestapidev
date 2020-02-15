@@ -59,7 +59,7 @@ func main() {
 	//books = append(books, Book{ID: "1", Title: "Война и Мир", Author: &Author{Firstname: "Лев", Lastname: "Толстой"}})
 	//books = append(books, Book{ID: "2", Title: "Преступление и наказание", Author: &Author{Firstname: "Фёдор", Lastname: "Достоевский"}})
 	//parts1 = append(parts1, Part1{StaticID: "1", Root: "1", Model: "Xiaomi Mi A2 Lite", System: "Android 9", IMEI: "12435364575656234"})
-	r.HandleFunc("/books/{id}", updateBook).Methods("PUT")
+	r.HandleFunc("books/{id}", updateBook).Methods("PUT")
 	r.HandleFunc("/books/{id}", deleteBook).Methods("DELETE")
 	r.HandleFunc("/parts1", getParts1).Methods("GET")
 	r.HandleFunc("/parts1/{id}", getPart1).Methods("GET")
