@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gorilla/mux"
-	"log"
 	"math/rand"
 	"net/http"
 	"os"
@@ -71,7 +71,19 @@ func main() {
 	r.HandleFunc("/outputs/{id}", getOutput).Methods("GET")
 	r.HandleFunc("/outputs", createOutput).Methods("POST")
 
-	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), r))
+	//log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), r))
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8000" //localhost
+	}
+
+	fmt.Println(port)
+
+	err := http.ListenAndServe(":"+port, r) //Launch the app, visit localhost:8000/api
+	if err != nil {
+		fmt.Print(err)
+	}
 
 	//r := grace.Serve(":" + port, context.ClearHandler(http.DefaultServeMux))
 }
@@ -109,6 +121,7 @@ func createPart1(w http.ResponseWriter, r *http.Request) {
 func getParts2(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(parts2)
+
 }
 
 func getPart2(w http.ResponseWriter, r *http.Request) {
