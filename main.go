@@ -137,7 +137,7 @@ func getParts2(w http.ResponseWriter, r *http.Request) {
 }
 
 func getPart2(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "text/html")
 	params := mux.Vars(r)
 	for _, item := range parts2 {
 		if item.Id == params["id"] {
