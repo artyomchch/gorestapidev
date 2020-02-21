@@ -31,21 +31,17 @@ type Part1 struct {
 
 type Part2 struct {
 	Id  string `json:"id"`
-	App *App   `json:"app"`
+	App string `json:"app"`
 }
 
-type App struct {
-	ApkId       string      `json:"apkId"`
-	ApkName     string      `json:"apk_name"`
-	ApkFullName string      `json:"apkFullName"`
-	ApkVersion  string      `json:"apk_version"`
-	ApkPath     string      `json:"apk_path"`
-	Permission  *Permission `json:"permission"`
-}
-
-type Permission struct {
-	ApkPermission string `json:"apk_permission"`
-}
+//type App struct {
+//	ApkId         string  `json:"apkId"`
+//	ApkName       string  `json:"apk_name"`
+//	ApkFullName   string  `json:"apkFullName"`
+//	ApkVersion    string  `json:"apk_version"`
+//	ApkPath       string  `json:"apk_path"`
+//	ApkPermission string  `json:"apk_permission"`
+//}
 
 type Output struct {
 	ApkId         string `json:"apkId"`
@@ -61,8 +57,9 @@ var books []Book
 var parts1 []Part1
 
 var parts2 []Part2
-var app []App
-var permission []Permission
+
+//var app []App
+//var permission []Permission
 
 //var parts3 []Part3
 var outputs []Output
