@@ -29,6 +29,11 @@ type Part1 struct {
 	IMEI     string `json:"imei"`
 }
 
+type Permission struct {
+	Id    string `json:"id"`
+	Part2 *Part2 `json:"part2"`
+}
+
 type Part2 struct {
 	ApkId         string `json:"apkId"`
 	ApkName       string `json:"apk_name"`
@@ -50,6 +55,7 @@ type Output struct {
 var books []Book
 var parts1 []Part1
 var parts2 []Part2
+var permission []Permission
 
 //var parts3 []Part3
 var outputs []Output
