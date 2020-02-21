@@ -29,12 +29,12 @@ type Part1 struct {
 	IMEI     string `json:"imei"`
 }
 
-type Permission struct {
-	Id    string `json:"id"`
-	Part2 *Part2 `json:"part2"`
+type Part2 struct {
+	Id         string      `json:"id"`
+	Permission *Permission `json:"part2"`
 }
 
-type Part2 struct {
+type Permission struct {
 	ApkId         string `json:"apkId"`
 	ApkName       string `json:"apk_name"`
 	ApkFullName   string `json:"apkFullName"`
@@ -136,7 +136,7 @@ func getPart2(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	for _, item := range parts2 {
-		if item.ApkId == params["id"] {
+		if item.Id == params["id"] {
 			json.NewEncoder(w).Encode(item)
 			return
 		}
@@ -148,7 +148,7 @@ func createPart2(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var part2 Part2
 	_ = json.NewDecoder(r.Body).Decode(&part2)
-	part2.ApkId = strconv.Itoa(rand.Intn(1000000))
+	part2.Id = strconv.Itoa(rand.Intn(1000000))
 	parts2 = append(parts2, part2)
 	json.NewEncoder(w).Encode(part2)
 }
