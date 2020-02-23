@@ -36,10 +36,10 @@ type Part2 struct {
 
 type App struct {
 	ApkId         string   `json:"apkId"`
-	ApkName       string   `json:"apkName"`
-	ApkFullName   string   `json:"apkFullName"`
-	ApkVersion    string   `json:"apkVersion"`
-	ApkPath       string   `json:"apkPath"`
+	ApkName       string   `json:"nameApp"`
+	ApkFullName   string   `json:"fullAppName"`
+	ApkVersion    string   `json:"versionApp"`
+	ApkPath       string   `json:"pathApp"`
 	ApkPermission []string `json:"permissionArray"`
 }
 
