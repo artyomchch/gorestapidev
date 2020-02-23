@@ -37,7 +37,7 @@ type Part2 struct {
 type App struct {
 	ApkId         string   `json:"apkId"`
 	ApkName       string   `json:"nameApp"`
-	ApkFullName   string   `json:"fullAppName"`
+	ApkFullName   string   `json:"packageName"`
 	ApkVersion    string   `json:"versionApp"`
 	ApkPath       string   `json:"pathApp"`
 	ApkPermission []string `json:"permissionArray"`
