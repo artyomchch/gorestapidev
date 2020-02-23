@@ -40,7 +40,7 @@ type App struct {
 	ApkFullName   string   `json:"apkFullName"`
 	ApkVersion    string   `json:"apkVersion"`
 	ApkPath       string   `json:"apkPath"`
-	ApkPermission []string `json:"apkPermission"`
+	ApkPermission []string `json:"permissionArray"`
 }
 
 type Output struct {
