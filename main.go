@@ -59,7 +59,7 @@ var parts1 []Part1
 var parts2 []Part2
 
 //var name []Name
-var app App
+var app []App
 
 //var parts3 []Part3
 var outputs []Output
@@ -79,7 +79,8 @@ func main() {
 	r.HandleFunc("/devices", getParts1).Methods("GET")
 	r.HandleFunc("/device/{id}", getPart1).Methods("GET")
 	r.HandleFunc("/devices", createPart1).Methods("POST")
-	r.HandleFunc("/device/{id}/apps", getAppOfDevice).Methods("GET")
+	r.HandleFunc("/device/{id}/apps", getAppsOfDevice).Methods("GET")
+	r.HandleFunc("/device/{id}/app/{id}", getCurrentIdOfApp).Methods("GET")
 	r.HandleFunc("/apps", getParts2).Methods("GET")
 	r.HandleFunc("/apps/{id}", getPart2).Methods("GET")
 	r.HandleFunc("/apps", createPart2).Methods("POST")
@@ -134,12 +135,25 @@ func createPart1(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(part1)
 }
 
-//////////////////APPofID////////
-func getAppOfDevice(w http.ResponseWriter, r *http.Request) {
+//////////////////APPSofID////////
+func getAppsOfDevice(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	for _, item := range parts2 {
 		if item.Id == params["id"] {
+			json.NewEncoder(w).Encode(item)
+			return
+		}
+	}
+	json.NewEncoder(w).Encode(&Part2{})
+}
+
+/////////CURRENT ID OF APP///////////////
+func getCurrentIdOfApp(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	for _, item := range app {
+		if strconv.Itoa(item.ApkId) == params["id"] {
 			json.NewEncoder(w).Encode(item)
 			return
 		}
