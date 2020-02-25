@@ -158,7 +158,7 @@ func getCurrentIdOfApp(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	json.NewEncoder(w).Encode(&Part2{})
+	json.NewEncoder(w).Encode(&App{})
 }
 
 /////////////PART2/////////////
