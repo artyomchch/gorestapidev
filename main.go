@@ -154,7 +154,7 @@ func getCurrentIdOfApp(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	for _, item := range app {
 		if strconv.Itoa(item.ApkId) == params["id"] {
-			json.NewEncoder(w).Encode(item)
+			json.NewEncoder(w).Encode(app)
 			return
 		}
 	}
