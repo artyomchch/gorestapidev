@@ -64,7 +64,11 @@ var app App
 //var parts3 []Part3
 var outputs []Output
 
+var appInt int = 0
+var deviceInt int = 0
+
 func main() {
+
 	r := mux.NewRouter()
 	//books = append(books, Book{ID: "1", Title: "Война и Мир", Author: &Author{Firstname: "Лев", Lastname: "Толстой"}})
 	//books = append(books, Book{ID: "2", Title: "Преступление и наказание", Author: &Author{Firstname: "Фёдор", Lastname: "Достоевский"}})
@@ -120,10 +124,11 @@ func getPart1(w http.ResponseWriter, r *http.Request) {
 }
 
 func createPart1(w http.ResponseWriter, r *http.Request) {
+	deviceInt++
 	w.Header().Set("Content-Type", "application/json")
 	var part1 Part1
 	_ = json.NewDecoder(r.Body).Decode(&part1)
-	part1.StaticID = strconv.Itoa(rand.Intn(1000000))
+	part1.StaticID = strconv.Itoa(deviceInt)
 	parts1 = append(parts1, part1)
 	json.NewEncoder(w).Encode(part1)
 }
@@ -149,10 +154,11 @@ func getPart2(w http.ResponseWriter, r *http.Request) {
 }
 
 func createPart2(w http.ResponseWriter, r *http.Request) {
+	appInt++
 	w.Header().Set("Content-Type", "application/json")
 	var part2 Part2
 	_ = json.NewDecoder(r.Body).Decode(&part2)
-	part2.Id = strconv.Itoa(rand.Intn(1000000))
+	part2.Id = strconv.Itoa(appInt)
 	parts2 = append(parts2, part2)
 	json.NewEncoder(w).Encode(part2)
 }
