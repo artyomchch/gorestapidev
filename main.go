@@ -35,7 +35,7 @@ type Part2 struct {
 }
 
 type App struct {
-	ApkId         string   `json:"apkId"`
+	ApkId         int      `json:"apkId"`
 	ApkName       string   `json:"nameApp"`
 	ApkFullName   string   `json:"packageName"`
 	ApkVersion    string   `json:"versionApp"`
