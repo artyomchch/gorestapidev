@@ -30,12 +30,16 @@ type Part1 struct {
 }
 
 type Part2 struct {
-	Id  string `json:"id"`
-	App []*App `json:"app"`
+	Id   string  `json:"id"`
+	Apps []*Apps `json:"apps"`
+}
+
+type Apps struct {
+	ApkId int    `json:"apkId"`
+	App   []*App `json:"app"`
 }
 
 type App struct {
-	ApkId         int      `json:"apkId"`
 	ApkName       string   `json:"nameApp"`
 	ApkFullName   string   `json:"packageName"`
 	ApkVersion    string   `json:"versionApp"`
@@ -57,8 +61,7 @@ var books []Book
 var parts1 []Part1
 
 var parts2 []Part2
-
-//var name []Name
+var apps []Apps
 var app []App
 
 //var parts3 []Part3
@@ -80,7 +83,7 @@ func main() {
 	r.HandleFunc("/device/{id}", getPart1).Methods("GET")
 	r.HandleFunc("/devices", createPart1).Methods("POST")
 	r.HandleFunc("/device/{id}/apps", getAppsOfDevice).Methods("GET")
-	r.HandleFunc("/device/{id}/app/{id}", getCurrentIdOfApp).Methods("GET")
+	r.HandleFunc("/device/{id}/app/{id_app}", getCurrentIdOfApp).Methods("GET")
 	r.HandleFunc("/apps", getParts2).Methods("GET")
 	r.HandleFunc("/apps/{id}", getPart2).Methods("GET")
 	r.HandleFunc("/apps", createPart2).Methods("POST")
@@ -152,13 +155,14 @@ func getAppsOfDevice(w http.ResponseWriter, r *http.Request) {
 func getCurrentIdOfApp(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
-	for _, item := range app {
-		if strconv.Itoa(item.ApkId) == params["id"] {
-			json.NewEncoder(w).Encode(app[item.ApkId])
+	for _, item := range apps {
+		if strconv.Itoa(item.ApkId) == params["id_app"] {
+			print(item.ApkId)
+			json.NewEncoder(w).Encode(item)
 			return
 		}
 	}
-	json.NewEncoder(w).Encode(&App{})
+	json.NewEncoder(w).Encode(&Apps{})
 }
 
 /////////////PART2/////////////
