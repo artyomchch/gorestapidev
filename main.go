@@ -61,7 +61,7 @@ type DynaApps struct {
 	ApkName                                    string        `json:"apk_name"`
 	AndroidAccountsAccount                     []string      `json:"androidAccountsAccount"`
 	AndroidServiceVoiceVoiceInteractionSession []string      `json:"androidServiceVoiceVoiceInteractionSession"`
-	AndroidTelephonyPhoneStateListener         []string      `json:" androidTelephonyPhoneStateListener"`
+	AndroidTelephonyPhoneStateListener         []string      `json:"androidTelephonyPhoneStateListener"`
 	AndroidViewInputmethodBaseInputConnection  []string      `json:"androidViewInputmethodBaseInputConnection"`
 	JavaLangReflectMethod                      []string      `json:"javaLangReflectMethod"`
 	JavaIoFile                                 []string      `json:"javaIoFile"`
