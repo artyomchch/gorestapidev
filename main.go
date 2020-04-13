@@ -56,15 +56,39 @@ type Output struct {
 	ApkTitle      string `json:"apk_title"`
 }
 
+type DynaApps struct {
+	ApkId                                      string        `json:"apkId"`
+	ApkName                                    string        `json:"apk_name"`
+	AndroidAccountsAccount                     []string      `json:"androidAccountsAccount"`
+	AndroidServiceVoiceVoiceInteractionSession []string      `json:"androidServiceVoiceVoiceInteractionSession"`
+	AndroidTelephonyPhoneStateListener         []string      `json:" androidTelephonyPhoneStateListener"`
+	AndroidViewInputmethodBaseInputConnection  []string      `json:"androidViewInputmethodBaseInputConnection"`
+	JavaLangReflectMethod                      []string      `json:"javaLangReflectMethod"`
+	JavaIoFile                                 []string      `json:"javaIoFile"`
+	JavaNetUri                                 []*JavaNetUri `json:"javaNetUri"`
+}
+
+type JavaNetUri struct {
+	Time []string `json:"time"`
+	Url  string   `json:"url"`
+}
+
 var books []Book
 
+// part 1 - get id device
 var parts1 []Part1
 
+// part 2 static analyze
 var parts2 []Part2
 var apps []Apps
 var app []App
 
+// part3 dynamic analyze
+var dynaApps []DynaApps
+var javaNetUri []JavaNetUri
+
 //var parts3 []Part3
+//output
 var outputs []Output
 
 var appInt int = 0
@@ -84,6 +108,7 @@ func main() {
 	r.HandleFunc("/devices", createPart1).Methods("POST")
 	r.HandleFunc("/device/{id}/apps", getAppsOfDevice).Methods("GET")
 	r.HandleFunc("/device/{id}/app/{id_app}", getCurrentIdOfApp).Methods("GET")
+	r.HandleFunc("/appdyna", createCurrentIdOfApp).Methods("POST")
 	r.HandleFunc("/apps", getParts2).Methods("GET")
 	r.HandleFunc("/apps/{id}", getPart2).Methods("GET")
 	r.HandleFunc("/apps", createPart2).Methods("POST")
@@ -151,18 +176,27 @@ func getAppsOfDevice(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&Part2{})
 }
 
-/////////CURRENT ID OF APP///////////////
+/////////CURRENT ID OF APP  ///////////////
 func getCurrentIdOfApp(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
-	for _, item := range apps {
-		if strconv.Itoa(item.ApkId) == params["id_app"] {
-			print(item.ApkId)
+	for _, item := range dynaApps {
+		if item.ApkId == params["id_app"] {
 			json.NewEncoder(w).Encode(item)
 			return
 		}
 	}
-	json.NewEncoder(w).Encode(&Apps{})
+	json.NewEncoder(w).Encode(&DynaApps{})
+}
+
+func createCurrentIdOfApp(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Type", "application/json")
+	var dynaApp DynaApps
+	_ = json.NewDecoder(r.Body).Decode(&dynaApp)
+	//part2.Id = strconv.Itoa(deviceInt)
+	dynaApps = append(dynaApps, dynaApp)
+	json.NewEncoder(w).Encode(dynaApp)
 }
 
 /////////////PART2/////////////
