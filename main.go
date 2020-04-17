@@ -57,15 +57,15 @@ type Output struct {
 }
 
 type DynaApps struct {
-	ApkId                                      string        `json:"apkId"`
-	ApkName                                    string        `json:"apk_name"`
-	AndroidAccountsAccount                     []string      `json:"androidAccountsAccount"`
-	AndroidServiceVoiceVoiceInteractionSession []string      `json:"androidServiceVoiceVoiceInteractionSession"`
-	AndroidTelephonyPhoneStateListener         []string      `json:"androidTelephonyPhoneStateListener"`
-	AndroidViewInputmethodBaseInputConnection  []string      `json:"androidViewInputmethodBaseInputConnection"`
-	JavaLangReflectMethod                      []string      `json:"javaLangReflectMethod"`
-	JavaIoFile                                 []string      `json:"javaIoFile"`
-	JavaNetUri                                 []*JavaNetUri `json:"javaNetUri"`
+	ApkId                      string        `json:"apkId"`
+	ApkName                    string        `json:"apk_name"`
+	JavaSecurityMessageDigest  []string      `json:"javaSecurityMessageDigest"`
+	JavaxCryptoCipher          []string      `json:"javaxCryptoCipher"`
+	JavaLangSystem             []string      `json:"javaLangSystem"`
+	AndroidHardwareCamera      []string      `json:"androidHardwareCamera"`
+	AndroidTelephonySmsManager []string      `json:"androidTelephonySmsManager"`
+	JavaIoFile                 []string      `json:"javaIoFile"`
+	JavaNetUri                 []*JavaNetUri `json:"javaNetUri"`
 }
 
 type JavaNetUri struct {
