@@ -66,6 +66,8 @@ type DynaApps struct {
 	AndroidTelephonySmsManager []string      `json:"androidTelephonySmsManager"`
 	JavaIoFile                 []string      `json:"javaIoFile"`
 	JavaNetUri                 []*JavaNetUri `json:"javaNetUri"`
+	JavaNetUrl                 []string      `json:"javaNetUrl"`
+	JavaNetServerSocket        []string      `json:"javaNetServerSocket"`
 }
 
 type JavaNetUri struct {
