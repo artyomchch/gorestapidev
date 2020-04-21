@@ -57,17 +57,20 @@ type Output struct {
 }
 
 type DynaApps struct {
-	ApkId                      string        `json:"apkId"`
-	ApkName                    string        `json:"apk_name"`
-	JavaSecurityMessageDigest  []string      `json:"javaSecurityMessageDigest"`
-	JavaxCryptoCipher          []string      `json:"javaxCryptoCipher"`
-	JavaLangSystem             []string      `json:"javaLangSystem"`
-	AndroidHardwareCamera      []string      `json:"androidHardwareCamera"`
-	AndroidTelephonySmsManager []string      `json:"androidTelephonySmsManager"`
-	JavaIoFile                 []string      `json:"javaIoFile"`
-	JavaNetUri                 []*JavaNetUri `json:"javaNetUri"`
-	JavaNetUrl                 []string      `json:"javaNetUrl"`
-	JavaNetServerSocket        []string      `json:"javaNetServerSocket"`
+	ApkId                          string        `json:"apkId"`
+	ApkName                        string        `json:"apk_name"`
+	JavaSecurityMessageDigest      []string      `json:"javaSecurityMessageDigest"`
+	JavaxCryptoCipher              []string      `json:"javaxCryptoCipher"`
+	JavaLangSystem                 []string      `json:"javaLangSystem"`
+	AndroidHardwareCamera          []string      `json:"androidHardwareCamera"`
+	AndroidTelephonySmsManager     []string      `json:"androidTelephonySmsManager"`
+	AndroidContentContentResolver  []string      `json:"androidContentContentResolver"`
+	AndroidLocationLocationManager []string      `json:"androidLocationLocationManager"`
+	AndroidContentContext          []string      `json:"androidContentContext"`
+	JavaIoFile                     []string      `json:"javaIoFile"`
+	JavaNetUri                     []*JavaNetUri `json:"javaNetUri"`
+	JavaNetUrl                     []string      `json:"javaNetUrl"`
+	JavaNetServerSocket            []string      `json:"javaNetServerSocket"`
 }
 
 type JavaNetUri struct {
